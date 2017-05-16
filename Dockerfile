@@ -12,5 +12,12 @@ RUN npm install chimp selenium-standalone -g -q &&selenium-standalone install --
 RUN mkdir -p /usr/lib/node_modules/chimp/node_modules/selenium-standalone/.selenium/selenium-server/
 RUN cp /usr/lib/node_modules/selenium-standalone/.selenium/selenium-server/2.48.2-server.jar /usr/lib/node_modules/chimp/node_modules/selenium-standalone/.selenium/selenium-server/
 
+RUN apt-get install -y locales
+RUN export CHROME_BIN=/usr/lib/node_modules/chimp/node_modules/chromedriver/lib/chromedriver/chromedriver
+RUN export LC_ALL=en_US.UTF-8
+RUN export LANG=en_US.UTF-8
+RUN locale-gen en_US.UTF-8
+RUN localedef -i en_GB -f UTF-8 en_US.UTF-8
+
 RUN curl https://install.meteor.com/ | sh
 	
